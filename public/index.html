@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Server</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <h1>Comentarios: </h1>
+                </div>
+                <div class="row">
+                    <ul class="commentsList">
+                        <!-- Comments go here. -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <h1>Encuentra, edita, crea o borra un comentario</h1>
+                </div>
+                <div class="row">
+                    <h2>¿Que quieres hacer?</h2>
+                </div>
+                <div class="row center p-15px spaced">
+                    <input id="find" type="button" value="Find" class="p-b-15px">
+                    <input id="edit" type="button" value="Edit" class="p-b-15px">
+                    <input id="create" type="button" value="Create" class="p-b-15px">
+                    <input id="delete" type="button" value="Delete" class="p-b-15px">
+                </div>
+                <div id="commentForm" class="container">
+                    <div id="id">
+                        <label for="commentId">ID del comentario:</label>
+                        <input id="commentId" type="text" class="text w-auto">
+                    </div>
+                    <div id="title">
+                        <label for="commentTitle">Titulo del comentario:</label>
+                        <input id="commentTitle" type="text" class="text w-auto">
+                    </div>
+                    <div id="content">
+                        <label for="commentContent">Contenido del comentario:</label>
+                        <textarea id="commentContent" name="commentContent" cols="30" rows="10"></textarea>
+                    </div>
+                    <div id="autor">
+                        <label for="commentAutor">Autor del comentario:</label>
+                        <input id="commentAutor" type="text" class="text w-auto">
+                    </div>
+                </div>
+                <div class="row center">
+                    <input id="btnDone" type="button" value="done">
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <h2>Observe las interacciones:</h2>
+                    </div>
+                </div>
+                <ul id="interaction">
+                    <!-- Found comment go here. -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
