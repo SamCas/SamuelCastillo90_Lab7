@@ -18,39 +18,39 @@ function loadComments() {
 }
 
 function displayComments(comments) {
-    $.each(comments, function (indexInArray, comment) { 
-         $('.commentsList').append(
-             '<div class ="comment">' +
-                '<li>' + comment.id + '</li>' +
-                '<li>' + comment.titulo + '</li>' +
-                '<li>' + comment.contenido + '</li>' +
-                '<li>' + comment.autor + '</li>' +
-                '<li>' + comment.fecha + '</li>' +
-             '</div>'
-         );
+    $.each(comments, function (indexInArray, comment) {
+        $('.commentsList').append(
+            '<div class ="comment">' +
+            '<li>' + comment.id + '</li>' +
+            '<li>' + comment.titulo + '</li>' +
+            '<li>' + comment.contenido + '</li>' +
+            '<li>' + comment.autor + '</li>' +
+            '<li>' + comment.fecha + '</li>' +
+            '</div>'
+        );
     });
 }
 
-function displayFind(element){
+function displayFind(element) {
     $('#interaction').empty();
     $('#interaction').append(
         '<div class ="comment">' +
-           '<li>' + element.id + '</li>' +
-           '<li>' + element.titulo + '</li>' +
-           '<li>' + element.contenido + '</li>' +
-           '<li>' + element.autor + '</li>' +
-           '<li>' + element.fecha + '</li>' +
+        '<li>' + element.id + '</li>' +
+        '<li>' + element.titulo + '</li>' +
+        '<li>' + element.contenido + '</li>' +
+        '<li>' + element.autor + '</li>' +
+        '<li>' + element.fecha + '</li>' +
         '</div>'
     );
 }
 
 function findComment(autor) {
-    let url = '/blog-api/comentarios-por-autor?autor='+autor;
+    let url = '/blog-api/comentarios-por-autor?autor=' + autor;
     $.ajax({
         type: "GET",
         url: url,
         success: function (response) {
-            displayFind(response);            
+            displayFind(response);
         },
         error: function (jqXHR, status, error) {
             alert(jqXHR + " " + error + " " + status);
@@ -66,13 +66,13 @@ function createComment(params) {
         url: url,
         data: JSON.stringify(params),
         dataType: "json",
-        cache: false, 
+        cache: false,
         contentType: "application/json",
         success: function (response) {
-            displayFind(response);            
+            displayFind(response);
         },
         error: function (jqXHR, status, error) {
-            alert(status+ " " + error);
+            alert(status + " " + error);
         }
     });
 }
@@ -87,20 +87,20 @@ function deleteComment(params) {
             location.reload();
         },
         error: function (jqXHR, status, error) {
-            alert(status+ " " + error);
+            alert(status + " " + error);
         }
     });
 }
 
 function editComment(params) {
     let url = '/blog-api/actualizar-comentario/' + params.id;
-    
+
     $.ajax({
         type: "PUT",
         url: url,
         data: JSON.stringify(params),
         dataType: "json",
-        cache: false, 
+        cache: false,
         contentType: "application/json",
         success: function (response) {
             alert('Comentario actualizado con exito');
@@ -124,7 +124,7 @@ function handleDone(params, type) {
 
         case 'edit':
             editComment(params);
-    
+
         default:
             break;
     }
@@ -160,14 +160,13 @@ $('#delete').on('click', function () {
     $('#title').hide(400);
     $('#content').hide(400);
     $('#autor').hide(400);
-    $('#btnDone').hide(400);
     $('#id').show(400);
     $('#btnDone').show(400);
 });
 
 $('#edit').on('click', function () {
     eventType = 'edit';
-    
+
     $('#id').show(400);
     $('#title').show(400);
     $('#content').show(400);
@@ -180,33 +179,33 @@ $('#btnDone').on('click', function () {
     let type = eventType;
     switch (type) {
         case 'find':
-            handleDone($('#commentAutor').val(),eventType);
+            handleDone($('#commentAutor').val(), eventType);
             break;
 
         case 'create':
             handleDone({
-                titulo : $('#commentTitle').val(),
-                contenido : $('#commentContent').val(),
-                autor : $('#commentAutor').val()
-            },eventType);
+                titulo: $('#commentTitle').val(),
+                contenido: $('#commentContent').val(),
+                autor: $('#commentAutor').val()
+            }, eventType);
             break;
 
         case 'delete':
-            handleDone($('#commentId').val(),eventType);
+            handleDone($('#commentId').val(), eventType);
             break;
-    
+
 
         case 'edit':
             handleDone({
-                id : $('#commentId').val(),
-                titulo : $('#commentTitle').val(),
-                contenido : $('#commentContent').val(),
-                autor : $('#commentAutor').val()
-            },eventType);
+                id: $('#commentId').val(),
+                titulo: $('#commentTitle').val(),
+                contenido: $('#commentContent').val(),
+                autor: $('#commentAutor').val()
+            }, eventType);
             break;
 
         default:
             break;
     }
-    
+
 })
